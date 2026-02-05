@@ -1,0 +1,103 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To the love of my life 💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f7f1ea;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .screen { display: none; text-align: center; animation: fade .8s ease; }
+    .screen.active { display: block; }
+    h1, h2 { font-family: 'Playfair Display', serif; color: #9c1c1c; }.envelope {
+  width: 240px; height: 160px; background: #b11226; position: relative;
+  margin: 30px auto; cursor: pointer; border-radius: 6px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.2);
+}
+.envelope:before {
+  content: ''; position: absolute; top: 0; left: 0; width: 0; height: 0;
+  border-left: 120px solid transparent;
+  border-right: 120px solid transparent;
+  border-top: 80px solid #d61c3f;
+}
+
+.card {
+  background: #fffaf4; padding: 32px; border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.15); max-width: 320px;
+}
+
+button {
+  padding: 12px 26px; margin: 10px; border: none; border-radius: 30px;
+  cursor: pointer; font-size: 16px;
+}
+.yes { background: #b11226; color: white; }
+.no { background: #ddd; }
+
+.hearts span {
+  position: absolute; color: #d61c3f; animation: float 4s infinite;
+  font-size: 20px;
+}
+@keyframes float { from { transform: translateY(0); opacity:1;} to { transform: translateY(-600px); opacity:0;} }
+@keyframes fade { from { opacity:0; transform:scale(.95);} to { opacity:1; transform:scale(1);} }
+
+  </style>
+</head>
+<body><!-- Background music (YouTube embed) --><iframe id="music" width="0" height="0" src="https://www.youtube.com/embed/8EJ3zbKTWQ8?autoplay=1&loop=1&playlist=8EJ3zbKTWQ8" allow="autoplay"></iframe><!-- Screen 1 --><div class="screen active" id="s1">
+  <h2>To my Valentine</h2>
+  <h1>Sherry</h1>
+  <img src="photo-phone.jpg" alt="Sherry" style="width:220px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.2);margin:20px 0;" />
+  <div class="envelope" onclick="next(2)"></div>
+  <p>(tap the envelope)</p>
+</div><!-- Screen 2 --><div class="screen" id="s2">
+  <div class="card">
+    <h1>Dearest Sherry,</h1>
+    <p style="font-size:14px;line-height:1.6;text-align:left;">
+    Every moment with you feels like a dream I never want to wake up from. Your smile brightens even my dullest days and your presence makes everything better. Being with you makes every moment feel special and full of happiness.<br><br>
+    I love all the little things we share, from late-night talks to quiet moments together. You make my heart feel full of joy and warmth and inspire me to be the best version of myself. I am so grateful for every memory we create and every laugh we share.<br><br>
+    I love you, my Valentine ❤️
+    </p>
+    <button class="yes" onclick="next(3)">Next</button>
+  </div>
+</div><!-- Screen 3 --><div class="screen" id="s3">
+  <div class="card">
+    <h1>My favorite pictures of you 📸</h1>
+    <img src="photo1.jpg" style="width:100%;border-radius:10px;margin:8px 0;" />
+    <img src="photo2.jpg" style="width:100%;border-radius:10px;margin:8px 0;" />
+    <img src="photo3.jpg" style="width:100%;border-radius:10px;margin:8px 0;" />
+    <button class="yes" onclick="next(4)">Next</button>
+  </div>
+</div><!-- Screen 4 --><div class="screen" id="s4">
+  <div class="card">
+    <h1>Will you be my Valentine?</h1>
+    <button class="yes" onclick="next(5)">YES</button>
+    <button class="no" onclick="alert('You cannot say no 😭')">NO</button>
+  </div>
+</div><!-- Screen 5 --><div class="screen" id="s5">
+  <h1>I Love You ❤️</h1>
+</div><div class="hearts" id="hearts"></div><script>
+function next(n){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  document.getElementById('music').play();
+  if(n===5) startHearts();
+}
+function startHearts(){
+  const c=document.getElementById('hearts');
+  setInterval(()=>{
+    const h=document.createElement('span'); h.innerHTML='❤';
+    h.style.left=Math.random()*100+'vw'; h.style.bottom='0';
+    h.style.fontSize=Math.random()*24+16+'px';
+    c.appendChild(h); setTimeout(()=>h.remove(),4000);
+  },300);
+}
+</script></body>
+</html>
